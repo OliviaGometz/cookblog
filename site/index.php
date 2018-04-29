@@ -11,8 +11,7 @@
 	<?php require_once('helpers/bdd-connexion.php') ?>
 	<?php require_once('helpers/load-class.php') ?>
 
-
-	<?php include('partials/form-subscribe.php') ?>
+	<?php include('partials/forms/form-subscribe.php') ?>
 
 
 	<!--

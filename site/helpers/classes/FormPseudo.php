@@ -1,7 +1,7 @@
 <?php
 
 class FormPseudo {
-	public $pseudo;
+	public $val;
 	public $errors = [];
 	private $exists = false;
 	public $min = 3;
@@ -46,7 +46,7 @@ class FormPseudo {
 
 	public function validate($string) {
 		if ($string == NULL) {
-			$this->errors[] = 'Merci de renseigner une adresse email.';
+			$this->errors[] = 'Veuillez renseigner une adresse email.';
 		}
 		else {
 			$this->size($string);
@@ -55,7 +55,7 @@ class FormPseudo {
 		}
 
 		if (empty($this->errors)) {
-			$this->pseudo = ucfirst($string);
+			$this->val = ucfirst($string);
 		}
 	}
 }

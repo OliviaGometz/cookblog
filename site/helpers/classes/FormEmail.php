@@ -1,7 +1,7 @@
 <?php
 
 class FormEmail {
-	public $email;
+	public $val;
 	public $errors = [];
 	private $exists = false;
 
@@ -26,7 +26,7 @@ class FormEmail {
 			$this->errors[] = 'Il existe déjà un compte associé à cette adresse email. Veuillez vous connecter avec cette adresse email et votre mot de passe.';
 		}
 		else {
-			$this->email = $string;
+			$this->val = $string;
 		}
 	}
 

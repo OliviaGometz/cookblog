@@ -37,17 +37,30 @@
 
 	$pseudo = new FormPseudo;
 	$pseudo->validate(filter_input(INPUT_POST, 'pseudo', FILTER_SANITIZE_STRING));
-	var_dump($pseudo->pseudo);
+	var_dump($pseudo->val);
 	echo '<br>';
 	var_dump($pseudo->errors);
 	echo '<br>';
 
 	$email = new FormEmail;
 	$email->validate(filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL));
-
-	var_dump($email->email);
+	var_dump($email->val);
 	echo '<br>';
 	var_dump($email->errors);
+	echo '<br>';
+
+	$password = new FormPassword;
+	$password->validate(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING), filter_input(INPUT_POST, 'password2', FILTER_SANITIZE_STRING));
+	var_dump($password->val);
+	echo '<br>';
+	var_dump($password->errors);
+	echo '<br>';
+
+	$code = new FormCode;
+	$code->validate(filter_input(INPUT_POST, 'secretCode', FILTER_SANITIZE_STRING));
+	var_dump($code->val);
+	echo '<br>';
+	var_dump($code->errors);
 	echo '<br>';
 
 ?>
