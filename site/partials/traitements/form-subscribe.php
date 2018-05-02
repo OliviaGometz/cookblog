@@ -43,6 +43,7 @@ else {
 		echo json_encode($errors);
 	}
 	else {
-		var_dump($errors);
+		//var_dump($errors);
+		echo $errors;
 	}
 }
