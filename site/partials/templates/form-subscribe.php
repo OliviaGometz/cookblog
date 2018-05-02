@@ -7,7 +7,6 @@
 		<p>
 			Entre 3 et 15 lettres, sans chiffres ni caractères spéciaux, débutant par une majuscule.
 		</p>
-		<ul class="input-error"></ul>
 	</fieldset>
 
 	<fieldset>
@@ -18,7 +17,6 @@
 		<p>
 			Une adresse email valide et accessible.
 		</p>
-		<ul class="input-error"></ul>
 	</fieldset>
 
 	<fieldset>
@@ -30,7 +28,6 @@
 		<p>
 			Entre 6 et 30 caractères.
 		</p>
-		<ul class="input-error"></ul>
 	</fieldset>
 
 	<fieldset>
@@ -41,9 +38,7 @@
 		<p>
 			Le code secret vous permettra d'être rédacteur et d'avoir des super-pouvoirs&nbsp;! 
 		</p>
-		<ul class="input-error"></ul>
 	</fieldset>
 
-	<div class="form-error"></div>
 	<input type="submit" value="S'inscrire">
 </form>

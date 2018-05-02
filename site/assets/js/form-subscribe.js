@@ -27,25 +27,35 @@ var form = {
 		);
 	},
 	reponse: function(data) {
-		this.setErrorMsg(); //vide l'emplacement de l'erreur
+		this.setErrorMsg();
 		if (data['registred'] != null) {
-			console.log(data['registred']);
+			console.log(data['registred']); //reprendre là
 		}
 		else {
 			this.setInputsErrorMsg(data);
 		}
 	},
 	setErrorMsg: function(msg = null) {
-		this.object.find($('div.form-error')).html(msg);
+		this.object.find($('div.error')).remove();
+		if (msg != null) {
+			this.object.append('<div class="error">'+msg+'</div>');
+		}
 	},
 	setInputsErrorMsg: function(data) {
 		this.object.children('fieldset').each(function() {
-			var errors = data[$(this).children('input').attr('name')];
-			var ul = $(this).children('ul.input-error');
-			ul.empty(); //vide la liste d'erreurs
-			errors.forEach(function(msg) {
-				ul.append('<li>'+msg+'</li>');
-			});
+			var fieldset = $(this);
+			var errors = data[fieldset.children('input').attr('name')];
+			fieldset.children('ul').remove();
+			if (errors.length > 0) {
+				fieldset.removeClass('success').addClass('error');
+				fieldset.append(document.createElement('ul'));
+				errors.forEach(function(msg) {
+					fieldset.children('ul').append('<li>'+msg+'</li>');
+				});
+			}
+			else {
+				fieldset.removeClass('error').addClass('success');
+			}
 		});
 	},
 };

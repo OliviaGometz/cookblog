@@ -36,7 +36,8 @@ else {
 	$errors = array_merge(
 		['pseudo' => $pseudo->errors],
 		['email' => $email->errors],
-		['password' => $password->errors]
+		['password' => $password->errors],
+		['code' => $code->errors]
 	);
 
 	if ($isAjax->val()) {
