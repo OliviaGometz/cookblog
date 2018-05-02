@@ -1,4 +1,4 @@
-<form action="<?php echo basename($_SERVER['PHP_SELF']) ?>" method="post">
+<form action="../traitements/form-login.php" method="post">
 	<input type="text" name="email" placeholder="Email">
 	<input type="password" name="password" placeholder="Mot de passe">
 

@@ -46,7 +46,7 @@ class FormPseudo {
 
 	public function validate($string) {
 		if ($string == NULL) {
-			$this->errors[] = 'Veuillez renseigner une adresse email.';
+			$this->errors[] = 'Veuillez renseigner un pseudo.';
 		}
 		else {
 			$this->size($string);

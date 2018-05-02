@@ -32,7 +32,7 @@ class FormEmail {
 
 	public function validate($string) {
 		if ($string == NULL) {
-			$this->errors[] = 'Merci de renseigner une adresse email.';
+			$this->errors[] = 'Veuillez renseigner une adresse email.';
 		}
 		elseif ($string) {
 			$this->stillExists($string);

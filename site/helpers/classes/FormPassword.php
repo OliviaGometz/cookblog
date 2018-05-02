@@ -4,7 +4,7 @@ class FormPassword {
 	public $val;
 	public $errors = [];
 	public $min = 6;
-	public $max = 20;
+	public $max = 30;
 	
 	public function size($string) {
 		if (strlen($string) < $this->min) {

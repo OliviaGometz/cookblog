@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 26 avr. 2018 à 09:27
+-- Généré le :  mer. 02 mai 2018 à 18:35
 -- Version du serveur :  5.7.17
 -- Version de PHP :  7.1.3
 
@@ -113,7 +113,8 @@ CREATE TABLE `users` (
   `id` tinyint(4) UNSIGNED NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` char(32) NOT NULL,
-  `pseudo` varchar(255) NOT NULL
+  `pseudo` varchar(255) NOT NULL,
+  `role` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

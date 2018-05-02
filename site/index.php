@@ -3,16 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		Accueil
+		Cookblog
 	</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
 	<?php require_once('helpers/bdd-connexion.php') ?>
 	<?php require_once('helpers/load-class.php') ?>
 
-	<?php include('partials/forms/form-subscribe.php') ?>
-
+	<a href="inscription.php">
+		S'inscrire
+	</a>
 
 	<!--
 
@@ -138,7 +140,15 @@
 	
 -->
 	
-	
+		<!--
+	<script>
+		$('input[type="submit"]').click(function(e) {
+			e.preventDefault();
+			console.log( "ready!" );
+		});
+
+
+	</script>-->
 		
 </body>
 </html>
