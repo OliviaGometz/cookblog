@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 02 mai 2018 à 18:35
+-- Généré le :  jeu. 03 mai 2018 à 16:54
 -- Version du serveur :  5.7.17
 -- Version de PHP :  7.1.3
 
@@ -111,10 +111,11 @@ CREATE TABLE `unites` (
 
 CREATE TABLE `users` (
   `id` tinyint(4) UNSIGNED NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` char(32) NOT NULL,
+  `email` varchar(320) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `pseudo` varchar(255) NOT NULL,
-  `role` tinyint(3) UNSIGNED NOT NULL
+  `role` tinyint(3) UNSIGNED NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -185,7 +186,7 @@ ALTER TABLE `unites`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` tinyint(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `ustensiles`
 --

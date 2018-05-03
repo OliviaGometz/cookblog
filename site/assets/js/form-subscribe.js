@@ -28,8 +28,9 @@ var form = {
 	},
 	reponse: function(data) {
 		this.setErrorMsg();
-		if (data['registred'] != null) {
-			console.log(data['registred']); //reprendre là
+		
+		if (data['registred']) {
+			this.registred(data);
 		}
 		else {
 			this.setInputsErrorMsg(data);
@@ -57,5 +58,8 @@ var form = {
 				fieldset.removeClass('error').addClass('success');
 			}
 		});
+	},
+	registred: function(data) {
+		$('body').load('partials/templates/validated-subscribe.php', {'pseudo': data['pseudo']});
 	},
 };

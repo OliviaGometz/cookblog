@@ -16,35 +16,46 @@ $code->validate(filter_input(INPUT_POST, 'code', FILTER_SANITIZE_STRING));
 
 
 if (isset($pseudo->val) && isset($email->val) && isset($password->val) && isset($code->val)) {
+	
 	$req = $bdd->prepare('
 		INSERT INTO users (email, password, pseudo, role)
 		VALUES (:email, :password, :pseudo, :role)
 	');
 
 	$req->execute(
-		array(
+		[
 			'email' => $email->val,
 			'password' => $password->val,
 			'pseudo' => $pseudo->val,
 			'role' => $code->val
-		)
+		]
 	);
 
-	echo json_encode(['registred' => 'Bien enregistré&nbsp;!']);
+	$subscribe = [
+		'registred' => true,
+		'pseudo' => $pseudo->val,
+		'email' => $email->val
+	];
+
+	if ($isAjax->val()) {
+		echo json_encode($subscribe);
+	}
+	else {
+		header('Location: ../templates/validated-subscribe.php');
+	}
 }
 else {
-	$errors = array_merge(
-		['pseudo' => $pseudo->errors],
-		['email' => $email->errors],
-		['password' => $password->errors],
-		['code' => $code->errors]
-	);
+	$errors = [
+		'pseudo' => $pseudo->errors,
+		'email' => $email->errors,
+		'password' => $password->errors,
+		'code' => $code->errors
+	];
 
 	if ($isAjax->val()) {
 		echo json_encode($errors);
 	}
 	else {
-		//var_dump($errors);
-		echo $errors;
+		header('Location: ../../inscription.php');
 	}
 }
