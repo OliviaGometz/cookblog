@@ -2,5 +2,5 @@
 	<input type="text" name="login" placeholder="Pseudo ou email">
 	<input type="password" name="password" placeholder="Mot de passe">
 
-	<input type="submit" name="logout" value="Me connecter">
+	<input type="submit" value="Me connecter">
 </form>

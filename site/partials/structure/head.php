@@ -14,14 +14,6 @@
 	<?php require_once('helpers/bdd-connexion.php'); ?>
 	<?php require_once('helpers/load-class.php'); ?>
 
-	<?php
-		if (isset($_POST['logout'])) {
-			session_unset();
-			session_destroy();
-			unset($_POST['logout']);
-		}
-	?>
-
 	<nav>
 		<div class="<?php echo isset($_SESSION['id']) ? 'connected' : 'not-connected' ?>">
 			<button>
@@ -39,10 +31,8 @@
 						Mon compte
 					</a>
 				</li>
-				<li>
-					<form action="<?php echo basename($_SERVER['PHP_SELF']) ?>" method="post">
-						<input type="submit" name="logout" value="Déconnexion">
-					</form>
+				<li id="logout">
+					Déconnexion
 				</li>
 
 				<?php else : ?>

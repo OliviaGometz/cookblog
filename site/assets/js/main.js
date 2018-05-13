@@ -2,6 +2,7 @@ $(document).ready(function() {
 	popin.linkClick();
 	forms.requete(subscribe);
 	forms.requete(login);
+	logout.requete($('#logout'));
 });
 
 var popin = {
@@ -115,5 +116,26 @@ var login = {
 	},
 	registred: function(data) {
 		location.reload();
+	},
+};
+
+var logout = {
+	requete: function(el) {
+		el.click(function(e) {
+			logout.ajax();
+		});
+	},
+	ajax: function() {
+		$.ajax({
+			url: 'partials/traitements/logout.php',
+			type: 'POST',
+			success: function() {
+				location.reload();
+			},
+			error: function() {
+				popup.create($('body'));
+				popup.el.html('<p>Une erreur est survenue lors de l\'appel AJAX&nbsp;: tu n\'as peut-être pas été déconnecté.</p>');
+			},
+		});
 	},
 };

@@ -40,5 +40,5 @@
 		</p>
 	</fieldset>
 
-	<input type="submit" name="logout" value="M'inscrire">
+	<input type="submit" value="M'inscrire">
 </form>
