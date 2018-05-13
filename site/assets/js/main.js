@@ -1,15 +1,15 @@
 $(document).ready(function() {
 	popin.linkClick();
 	forms.requete(subscribe);
+	forms.requete(login);
 });
 
 var popin = {
 	aside: $('aside.popin'),
 	contents: $('.popin-content'),
 	linkClick: function() {
-		$('.no-connected a').click(function(e) {
-			e.preventDefault();
-			popin.openContent('#' + $(this).attr('href').replace('.php', ''));
+		$('.no-connected li').click(function(e) {
+			popin.openContent('#' + $(this).data('target'));
 		});
 	},
 	openContent: function(ct) { //pimper fonction avec classes personnalisées + virer style inline aside dans popin.php
@@ -44,7 +44,7 @@ var forms = {
 	},
 	reponseAjax: function(variable, data) {
 		this.cleanErrorAjax(variable);
-		data['registred'] ? variable.registred(data) : variable.errors(data);
+		data['success'] ? variable.registred(data) : variable.errors(data);
 	},
 	errorAjax: function(variable, msg) {
 		this.cleanErrorAjax(variable);
@@ -76,17 +76,23 @@ var subscribe = {
 		});
 	},
 	registred: function(data) {
-		$(this.following).load('partials/templates/form-login.php', {'pseudo': data['pseudo']}); //vérifier si ajax login fonctionne
 		popin.openContent(this.following);
+		$(this.following).find($('input[name="login"]')).val(data['pseudo']);
+		$(this.following).prepend(document.createElement('header'));
+		$(this.following).children('header').load('partials/templates/form-login-header.php', {'pseudo': data['pseudo'], 'email': data['email']});
 	},
 };
 
 var login = {
 	el: $('#login'),
-
+	errors: function(data) {
+		this.el.children('ul').remove();
+		this.el.append(document.createElement('ul'));
+		data.forEach(function(msg) {
+			login.el.children('ul').append('<li>'+msg+'</li>');
+		});
+	},
+	registred: function(data) {
+		location.reload();
+	},
 };
-
-console.log('coucou le js');
-
-//location.reload();
-//reload = true

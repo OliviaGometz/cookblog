@@ -2,6 +2,7 @@
 	if (isset($_POST['logout'])) {
 		session_unset();
 		session_destroy();
+		unset($_POST['logout']);
 	}
 ?>
 
@@ -29,18 +30,29 @@
 			</li>
 
 			<?php else : ?>
-			<li>
-				<a href="connexion.php">
-					Connexion
-				</a>
+			<li data-target="connexion">
+				Connexion
 			</li>
-			<li>
-				<a href="inscription.php">
-					Inscription
-				</a>
+			<li data-target="inscription">
+				Inscription
 			</li>
 
 			<?php endif ?>
 		</ul>
 	</div>
 </nav>
+
+<aside class="popin" style="display: none">
+	<?php if (isset($_SESSION['id'])) : ?>
+	
+
+	<?php else : ?>
+	<div id="connexion" class="popin-content">
+		<?php include_once('partials/templates/form-login.php'); ?>
+	</div>
+	<div id="inscription" class="popin-content">
+		<?php include_once('partials/templates/form-subscribe.php'); ?>
+	</div>
+
+	<?php endif ?>
+</aside>

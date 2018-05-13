@@ -9,6 +9,4 @@
 	Index
 </main>
 
-<?php include_once('partials/structure/popin.php'); ?>
-
 <?php require_once('partials/structure/end.php'); ?>

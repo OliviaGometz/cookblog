@@ -32,7 +32,7 @@ class FormPseudo {
 		$req->execute();
 
 		while ($users = $req->fetch(PDO::FETCH_OBJ)) {
-			if ($users->pseudo == $string) {
+			if ($users->pseudo == ucfirst($string)) {
 				$this->exists = true;
 			}
 		}

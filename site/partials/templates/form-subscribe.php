@@ -1,5 +1,5 @@
 <form id="subscribe" action="partials/traitements/form-subscribe.php" method="post">
-	<fieldset class="<?php isset($_SESSION['pseudo']) ? 'error' : '' ?>">
+	<fieldset>
 		<label for="pseudo">
 			Pseudo
 		</label>
@@ -7,19 +7,9 @@
 		<p>
 			Entre 3 et 15 lettres, sans chiffres ni caractères spéciaux, débutant par une majuscule.
 		</p>
-
-		<?php if (isset($_SESSION['pseudo'])) : ?>
-			<ul>
-				<?php foreach ($_SESSION['pseudo'] as $value) : ?>
-					<li>
-						<?php echo $value ?>
-					</li>
-				<?php endforeach ?>
-			</ul>
-		<?php endif ?>
 	</fieldset>
 
-	<fieldset class="<?php isset($_SESSION['email']) ? 'error' : '' ?>">
+	<fieldset>
 		<label for="email">
 			E-mail
 		</label>
@@ -27,19 +17,9 @@
 		<p>
 			Une adresse email valide et accessible.
 		</p>
-
-		<?php if (isset($_SESSION['email'])) : ?>
-			<ul>
-				<?php foreach ($_SESSION['email'] as $value) : ?>
-					<li>
-						<?php echo $value ?>
-					</li>
-				<?php endforeach ?>
-			</ul>
-		<?php endif ?>
 	</fieldset>
 
-	<fieldset class="<?php isset($_SESSION['password']) ? 'error' : '' ?>">
+	<fieldset>
 		<label for="password">
 			Mot de passe
 		</label>
@@ -48,19 +28,9 @@
 		<p>
 			Entre 6 et 30 caractères.
 		</p>
-
-		<?php if (isset($_SESSION['password'])) : ?>
-			<ul>
-				<?php foreach ($_SESSION['password'] as $value) : ?>
-					<li>
-						<?php echo $value ?>
-					</li>
-				<?php endforeach ?>
-			</ul>
-		<?php endif ?>
 	</fieldset>
 
-	<fieldset class="<?php isset($_SESSION['code']) ? 'error' : '' ?>">
+	<fieldset>
 		<label for="code">
 			Code secret
 		</label>
@@ -68,19 +38,7 @@
 		<p>
 			Le code secret vous permettra d'être rédacteur et d'avoir des super-pouvoirs&nbsp;! 
 		</p>
-
-		<?php if (isset($_SESSION['code'])) : ?>
-			<ul>
-				<?php foreach ($_SESSION['code'] as $value) : ?>
-					<li>
-						<?php echo $value ?>
-					</li>
-				<?php endforeach ?>
-			</ul>
-		<?php endif ?>
 	</fieldset>
 
-	<input type="submit" value="S'inscrire">
-
-	<?php session_unset() ?>
+	<input type="submit" name="logout" value="M'inscrire">
 </form>

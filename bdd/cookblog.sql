@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 03 mai 2018 à 16:54
+-- Généré le :  Dim 13 mai 2018 à 16:13
 -- Version du serveur :  5.7.17
 -- Version de PHP :  7.1.3
 
@@ -186,7 +186,7 @@ ALTER TABLE `unites`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` tinyint(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` tinyint(4) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `ustensiles`
 --

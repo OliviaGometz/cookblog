@@ -3,7 +3,6 @@
 require_once('../../helpers/bdd-connexion.php');
 require_once('../../helpers/load-class.php');
 
-$isAjax = new IsAjax;
 $pseudo = new FormPseudo;
 $email = new FormEmail;
 $password = new FormPassword;
@@ -29,38 +28,19 @@ if (isset($pseudo->val) && isset($email->val) && isset($password->val) && isset(
 		]
 	);
 
-	$subscribe = [
-		'registred' => true,
+	$reponse = [
+		'success' => true,
 		'pseudo' => $pseudo->val,
 		'email' => $email->val
 	];
-
-	if ($isAjax->val()) {
-		echo json_encode($subscribe);
-	}
-	else {
-		session_start();
-		$_SESSION['pseudo'] = $pseudo->val;
-		header('Location: ../../connexion.php');
-	}
 }
 else {
-	$errors = [
+	$reponse = [
 		'pseudo' => $pseudo->errors,
 		'email' => $email->errors,
 		'password' => $password->errors,
 		'code' => $code->errors
 	];
-
-	if ($isAjax->val()) {
-		echo json_encode($errors);
-	}
-	else {
-		session_start();
-		$_SESSION['pseudo'] = $pseudo->errors;
-		$_SESSION['email'] = $email->errors;
-		$_SESSION['password'] = $password->errors;
-		$_SESSION['code'] = $code->errors;
-		header('Location: ../../inscription.php');
-	}
 }
+
+echo json_encode($reponse);
