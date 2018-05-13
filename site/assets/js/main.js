@@ -5,17 +5,38 @@ $(document).ready(function() {
 });
 
 var popin = {
-	aside: $('aside.popin'),
+	el: $('aside.popin'),
 	contents: $('.popin-content'),
 	linkClick: function() {
-		$('.no-connected li').click(function(e) {
+		$('.not-connected li').click(function(e) {
 			popin.openContent('#' + $(this).data('target'));
 		});
 	},
 	openContent: function(ct) { //pimper fonction avec classes personnalisées + virer style inline aside dans popin.php
-		this.aside.show();
+		this.el.show();
 		this.contents.hide();
 		$(ct).show();
+	},
+	close: function() {
+
+	},
+};
+
+var message = {
+	el: $('aside.message'),
+	close: function() {
+
+	},
+};
+
+var popup = {
+	el: $('<aside class="popup"></aside>'),
+	create: function(block) {
+		$('.popup').remove();
+		block.prepend(this.el);
+	},
+	close: function() {
+
 	},
 };
 
@@ -63,7 +84,7 @@ var subscribe = {
 			var fieldset = $(this);
 			var errors = data[fieldset.children('input').attr('name')];
 			fieldset.children('ul').remove();
-			if (errors.length > 0) {
+			if (errors.length) {
 				fieldset.removeClass('success').addClass('error');
 				fieldset.append(document.createElement('ul'));
 				errors.forEach(function(msg) {
@@ -78,8 +99,8 @@ var subscribe = {
 	registred: function(data) {
 		popin.openContent(this.following);
 		$(this.following).find($('input[name="login"]')).val(data['pseudo']);
-		$(this.following).prepend(document.createElement('header'));
-		$(this.following).children('header').load('partials/templates/form-login-header.php', {'pseudo': data['pseudo'], 'email': data['email']});
+		popup.create($(this.following));
+		popup.el.load('partials/templates/popup-registred.php', {'pseudo': data['pseudo'], 'email': data['email']});
 	},
 };
 

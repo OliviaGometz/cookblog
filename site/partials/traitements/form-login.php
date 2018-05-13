@@ -11,8 +11,8 @@ if ($login->userId && $login->userRole && $login->userPseudo) {
 	$_SESSION['id'] = $login->userId;
 	$_SESSION['role'] = $login->userRole;
 	$_SESSION['pseudo'] = $login->userPseudo;
-	//$_SESSION['flash'] = 'justConnected';
-	
+	$_SESSION['message'] = 'logged';
+
 	$reponse = [
 		'success' => true
 	];

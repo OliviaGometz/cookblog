@@ -3,8 +3,6 @@
 	require_once('partials/structure/head.php');
 ?>
 
-<?php include_once('partials/structure/menu.php'); ?>
-
 <main>
 	Index
 </main>
