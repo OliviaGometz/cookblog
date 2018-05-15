@@ -11,9 +11,6 @@
 </head>
 
 <body>
-	<?php require_once('helpers/bdd-connexion.php'); ?>
-	<?php require_once('helpers/load-class.php'); ?>
-
 	<nav>
 		<div class="<?php echo isset($_SESSION['id']) ? 'connected' : 'not-connected' ?>">
 			<button>
