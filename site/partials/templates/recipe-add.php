@@ -1,4 +1,4 @@
-<form id="recipe-add" action="partials/traitements/recipe-add.php" method="post">
+<form id="recipeAdd" action="partials/traitements/recipe-add.php" method="post">
 	<fieldset>
 		<label for="nom">
 			Nom de la recette

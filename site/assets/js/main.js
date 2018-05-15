@@ -3,6 +3,7 @@ $(document).ready(function() {
 	forms.requete(subscribe);
 	forms.requete(login);
 	logout.requete($('#logout'));
+	forms.requete(recipeAdd);
 });
 
 var popin = {
@@ -137,5 +138,15 @@ var logout = {
 				popup.el.html('<p>Une erreur est survenue lors de l\'appel AJAX&nbsp;: tu n\'as peut-être pas été déconnecté.</p>');
 			},
 		});
+	},
+};
+
+var recipeAdd = {
+	el: $('#recipeAdd'),
+	errors: function(data) {
+		console.log(data);
+	},
+	registred: function(data) {
+		console.log(data);
 	},
 };
