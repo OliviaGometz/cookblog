@@ -12,7 +12,7 @@
 
 <body>
 	<nav>
-		<div class="<?php echo isset($_SESSION['id']) ? 'connected' : 'not-connected' ?>">
+		<div>
 			<button>
 				Bonhomme
 			</button>

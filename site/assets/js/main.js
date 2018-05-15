@@ -9,7 +9,7 @@ var popin = {
 	el: $('aside.popin'),
 	contents: $('.popin-content'),
 	linkClick: function() {
-		$('.not-connected li').click(function(e) {
+		$('nav li').click(function(e) {
 			popin.openContent('#' + $(this).data('target'));
 		});
 	},
