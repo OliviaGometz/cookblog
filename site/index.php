@@ -3,8 +3,6 @@
 	require_once('partials/structure/head.php');
 ?>
 
-<main>
-	Index
-</main>
+Index
 
 <?php require_once('partials/structure/end.php'); ?>

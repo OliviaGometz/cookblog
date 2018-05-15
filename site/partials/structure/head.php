@@ -22,6 +22,11 @@
 			<ul>
 				<?php if (isset($_SESSION['id'])) : ?>
 				<li>
+					<a href="recette-ajout.php">
+						Ajouter une recette
+					</a>
+				</li>
+				<li>
 					<a href="">
 						Mon profil
 					</a>
@@ -47,3 +52,5 @@
 			</ul>
 		</div>
 	</nav>
+
+	<main>

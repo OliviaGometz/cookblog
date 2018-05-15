@@ -1,3 +1,5 @@
+	</main>
+
 	<aside class="popin" style="display: none">
 		<?php if (isset($_SESSION['id'])) : ?>
 		
@@ -25,10 +27,3 @@
 	<script src="assets/js/main.js"></script>
 </body>
 </html>
-
-<?php
-	echo '<br>SESSION :<br>';
-	var_dump($_SESSION);
-	echo '<br><br>POST :<br>';
-	var_dump($_POST);
-?>
