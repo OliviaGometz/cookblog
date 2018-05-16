@@ -5,7 +5,7 @@
 		</label>
 		<input type="text" name="nom" id="nom" placeholder="Nom de la recette">
 		<p>
-			Entre 3 et 50 caractères.
+			Entre 3 et 50 caractères (espaces compris).
 		</p>
 	</fieldset>
 
@@ -13,9 +13,9 @@
 		<label for="description">
 			Description
 		</label>
-		<textarea name="description" id="description" placeholder="Petite description de la recette"></textarea>
+		<textarea name="description" id="description" placeholder="Petite description de la recette" minlength="20" maxlength="255"></textarea>
 		<p>
-			Entre 10 et 255 caractères.
+			Entre 20 et 255 caractères (espaces compris).
 		</p>
 	</fieldset>
 

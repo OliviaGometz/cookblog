@@ -3,7 +3,7 @@
 class RecipeDesc {
 	public $val;
 	public $errors = [];
-	public $min = 10;
+	public $min = 20;
 	public $max = 255;
 	
 	public function size($string) {

@@ -4,6 +4,7 @@ $(document).ready(function() {
 	forms.requete(login);
 	logout.requete($('#logout'));
 	forms.requete(recipeAdd);
+	textarea.init();
 });
 
 var popin = {
@@ -148,5 +149,29 @@ var recipeAdd = {
 	},
 	registred: function(data) {
 		console.log(data);
+	},
+};
+
+var textarea = {
+	el: $('textarea'),
+	mesureClassCorrect: 'mesureCorrect',
+	mesureClassError: 'mesureError',
+	init: function() {
+		this.start();
+		$('textarea').bind('input propertychange', function() {
+			textarea.changeMesure(this);
+		});
+	},
+	start: function() {
+		this.el.after('<div class="text-mesure"><div></div></div><span class="text-count"></span>');
+		this.el.each(function() {
+			textarea.changeMesure(this);
+		});
+	},
+	changeMesure: function(e) {
+		var pourcent = Math.ceil(e.value.length / $(e).attr('maxlength') * 100) + '%';
+		var mesureClass = e.value.length >= $(e).attr('minlength') && e.value.length <= $(e).attr('minlength') ? textarea.mesureClassCorrect : textarea.mesureClassError;
+		$(e).siblings('.text-mesure').children('div').css('width', pourcent).removeClass(textarea.mesureClassCorrect, textarea.mesureClassError).addClass(mesureClass);
+		$(e).siblings('.text-count').text(e.value.length + '/' + $(e).attr('maxlength'));
 	},
 };
