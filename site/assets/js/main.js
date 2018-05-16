@@ -170,7 +170,7 @@ var textarea = {
 	},
 	changeMesure: function(e) {
 		var pourcent = Math.ceil(e.value.length / $(e).attr('maxlength') * 100) + '%';
-		var mesureClass = e.value.length >= $(e).attr('minlength') && e.value.length <= $(e).attr('minlength') ? textarea.mesureClassCorrect : textarea.mesureClassError;
+		var mesureClass = e.value.length >= $(e).attr('minlength') && e.value.length <= $(e).attr('maxlength') ? textarea.mesureClassCorrect : textarea.mesureClassError;
 		$(e).siblings('.text-mesure').children('div').css('width', pourcent).removeClass(textarea.mesureClassCorrect, textarea.mesureClassError).addClass(mesureClass);
 		$(e).siblings('.text-count').text(e.value.length + '/' + $(e).attr('maxlength'));
 	},
