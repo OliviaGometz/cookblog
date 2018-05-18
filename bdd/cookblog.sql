@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  Dim 13 mai 2018 à 16:13
+-- Généré le :  ven. 18 mai 2018 à 22:12
 -- Version du serveur :  5.7.17
 -- Version de PHP :  7.1.3
 
@@ -53,10 +53,9 @@ CREATE TABLE `ingredients` (
 
 CREATE TABLE `recettes` (
   `id` mediumint(8) UNSIGNED NOT NULL,
-  `nom` varchar(255) NOT NULL,
+  `nom` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `preparation` time NOT NULL,
-  `cuisson` time NOT NULL,
+  `duree` time NOT NULL,
   `difficulte` tinyint(3) UNSIGNED NOT NULL,
   `prix` tinyint(3) UNSIGNED NOT NULL,
   `type` tinyint(3) UNSIGNED NOT NULL,
@@ -186,7 +185,7 @@ ALTER TABLE `unites`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` tinyint(4) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(4) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `ustensiles`
 --
