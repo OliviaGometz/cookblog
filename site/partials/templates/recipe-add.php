@@ -30,5 +30,17 @@
 		</p>
 	</fieldset>
 
+	<fieldset>
+		<label for="difficulte">
+			Difficulté
+		</label>
+		<select name="difficulte" id="difficulte">
+			<option value="" disabled selected >Choisis...</option>
+			<option value="1">Facile</option>
+			<option value="2">Normale</option>
+			<option value="3">Complexe</option>
+		</select>
+	</fieldset>
+
 	<input type="submit" value="Ajouter la recette">
 </form>

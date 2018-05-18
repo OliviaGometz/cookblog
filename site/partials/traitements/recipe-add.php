@@ -6,10 +6,12 @@ require_once('../../helpers/load-class.php');
 $nom = new RecipeNom;
 $desc = new RecipeDesc;
 $duree = new RecipeDuree;
+$difficulte = new RecipeDifficulte;
 
 $nom->validate(filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING));
 $desc->validate(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 $duree->validate(filter_input(INPUT_POST, 'dureeHour', FILTER_SANITIZE_STRING), filter_input(INPUT_POST, 'dureeMin', FILTER_SANITIZE_STRING));
+$difficulte->validate(filter_input(INPUT_POST, 'difficulte', FILTER_SANITIZE_STRING));
 
 if (isset($nom->val) && isset($desc->val)) {
 	$req = $bdd->prepare('
@@ -22,6 +24,7 @@ if (isset($nom->val) && isset($desc->val)) {
 			'nom' => $nom->val,
 			'description' => $desc->val,
 			'duree' => $duree->val,
+			'difficulte' => $difficulte->val,
 		]
 	);
 
@@ -34,6 +37,7 @@ else {
 		'nom' => $nom->errors,
 		'description' => $desc->errors,
 		'duree' => $duree->errors,
+		'difficulte' => $difficulte->errors,
 	];
 }
 
