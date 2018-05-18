@@ -42,5 +42,17 @@
 		</select>
 	</fieldset>
 
+	<fieldset>
+		<label for="prix">
+			Estimation du prix
+		</label>
+		<select name="prix" id="prix">
+			<option value="" disabled selected >Choisis...</option>
+			<option value="1">Bon marché</option>
+			<option value="2">Coût raisonnable</option>
+			<option value="3">Pour les grandes occasions</option>
+		</select>
+	</fieldset>
+
 	<input type="submit" value="Ajouter la recette">
 </form>

@@ -1,18 +1,17 @@
 <?php
 
-class RecipeDifficulte {
+class Select {
 	public $val;
 	public $errors = [];
-	private $options = [1, 2, 3];
 
-	public function validate($value) {
+	public function validate($value, $options, $name) {
 		if ($value == NULL) {
-			$this->errors[] = 'Veuillez choisir une difficulté.';
+			$this->errors[] = 'Veuillez choisir '.$name.'.';
 		}
 		else {
 			$value = (int)$value;
 
-			if (in_array($value, $this->options)) {
+			if (in_array($value, $options)) {
 				$this->val = $value;
 			}
 			else {
