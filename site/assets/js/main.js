@@ -171,7 +171,7 @@ var textarea = {
 	changeMesure: function(e) {
 		var val = Math.ceil(e.value.length / $(e).attr('maxlength') * 100);
 		var mesureClass = e.value.length >= $(e).attr('minlength') && e.value.length <= $(e).attr('maxlength') ? textarea.mesureClassCorrect : textarea.mesureClassError;
-		$(e).siblings('progress').attr('value', val).removeClass(textarea.mesureClassCorrect, textarea.mesureClassError).addClass(mesureClass);
+		$(e).siblings('progress').attr('value', val).removeClass(textarea.mesureClassCorrect + ' ' + textarea.mesureClassError).addClass(mesureClass);
 		$(e).siblings('.count').text(e.value.length + '/' + $(e).attr('maxlength'));
 	},
 };
