@@ -71,7 +71,13 @@
 		<label for="image">
 			Photo du plat
 		</label>
-		
+		<?php
+			var_dump((int)$_SESSION['id']);
+			$truc = (int)$_SESSION['id'];
+			var_dump($truc);
+
+
+		?>
 	</fieldset>
 
 	<fieldset>
