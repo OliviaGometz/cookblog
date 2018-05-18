@@ -163,15 +163,14 @@ var textarea = {
 		});
 	},
 	start: function() {
-		this.el.after('<progress max="100"></progress><span class="count"></span>');
+		this.el.after('<progress></progress><span class="count"></span>');
 		this.el.each(function() {
 			textarea.changeMesure(this);
 		});
 	},
 	changeMesure: function(e) {
-		var val = Math.ceil(e.value.length / $(e).attr('maxlength') * 100);
 		var mesureClass = e.value.length >= $(e).attr('minlength') && e.value.length <= $(e).attr('maxlength') ? textarea.mesureClassCorrect : textarea.mesureClassError;
-		$(e).siblings('progress').attr('value', val).removeClass(textarea.mesureClassCorrect + ' ' + textarea.mesureClassError).addClass(mesureClass);
+		$(e).siblings('progress').attr('value', e.value.length).attr('max', $(e).attr('maxlength')).removeClass(textarea.mesureClassCorrect + ' ' + textarea.mesureClassError).addClass(mesureClass);
 		$(e).siblings('.count').text(e.value.length + '/' + $(e).attr('maxlength'));
 	},
 };
