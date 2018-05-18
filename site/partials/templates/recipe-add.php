@@ -9,7 +9,7 @@
 		</p>
 	</fieldset>
 
-	<fieldset>
+	<fieldset class="js-textarea">
 		<label for="description">
 			Description
 		</label>

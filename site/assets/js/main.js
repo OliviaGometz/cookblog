@@ -153,25 +153,25 @@ var recipeAdd = {
 };
 
 var textarea = {
-	el: $('textarea'),
+	el: $('.js-textarea').children('textarea'),
 	mesureClassCorrect: 'mesureCorrect',
 	mesureClassError: 'mesureError',
 	init: function() {
 		this.start();
-		$('textarea').bind('input propertychange', function() {
+		this.el.bind('input propertychange', function() {
 			textarea.changeMesure(this);
 		});
 	},
 	start: function() {
-		this.el.after('<div class="text-mesure"><div></div></div><span class="text-count"></span>');
+		this.el.after('<progress max="100"></progress><span class="count"></span>');
 		this.el.each(function() {
 			textarea.changeMesure(this);
 		});
 	},
 	changeMesure: function(e) {
-		var pourcent = Math.ceil(e.value.length / $(e).attr('maxlength') * 100) + '%';
+		var val = Math.ceil(e.value.length / $(e).attr('maxlength') * 100);
 		var mesureClass = e.value.length >= $(e).attr('minlength') && e.value.length <= $(e).attr('maxlength') ? textarea.mesureClassCorrect : textarea.mesureClassError;
-		$(e).siblings('.text-mesure').children('div').css('width', pourcent).removeClass(textarea.mesureClassCorrect, textarea.mesureClassError).addClass(mesureClass);
-		$(e).siblings('.text-count').text(e.value.length + '/' + $(e).attr('maxlength'));
+		$(e).siblings('progress').attr('value', val).removeClass(textarea.mesureClassCorrect, textarea.mesureClassError).addClass(mesureClass);
+		$(e).siblings('.count').text(e.value.length + '/' + $(e).attr('maxlength'));
 	},
 };
