@@ -54,5 +54,38 @@
 		</select>
 	</fieldset>
 
+	<fieldset>
+		<label for="type">
+			Pour quel repas&nbsp;?
+		</label>
+		<select name="type" id="type">
+			<option value="" disabled selected >Choisis...</option>
+			<option value="1">Petit-déjeuner</option>
+			<option value="2">Encas sucré</option>
+			<option value="3">Apéritif</option>
+			<option value="4">Déjeuner ou dîner</option>
+		</select>
+	</fieldset>
+
+	<fieldset>
+		<label for="image">
+			Photo du plat
+		</label>
+		
+	</fieldset>
+
+	<fieldset>
+		<label for="note">
+			Ton appréciation
+		</label>
+		<select name="note" id="note">
+			<option value="" disabled selected >Choisis...</option>
+			<option value="1">Plutôt sympa</option>
+			<option value="2">Bonne découverte</option>
+			<option value="3">Excellent</option>
+			<option value="4">Coup de coeur</option>
+		</select>
+	</fieldset>
+
 	<input type="submit" value="Ajouter la recette">
 </form>
