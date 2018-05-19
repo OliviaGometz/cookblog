@@ -28,6 +28,8 @@ if (isset($pseudo->val) && isset($email->val) && isset($password->val) && isset(
 		]
 	);
 
+	$req->closeCursor();
+
 	$reponse = [
 		'success' => true,
 		'pseudo' => $pseudo->val,

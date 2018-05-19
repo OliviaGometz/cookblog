@@ -3,7 +3,7 @@ $(document).ready(function() {
 	forms.requete(subscribe);
 	forms.requete(login);
 	logout.requete($('#logout'));
-	forms.requete(recipeAdd);
+	forms.requete(recipeAdd, true);
 	textarea.init();
 });
 
@@ -44,10 +44,15 @@ var popup = {
 };
 
 var forms = {
-	requete: function(variable) {
+	requete: function(variable, hasFiles = false) {
 		variable.el.find($('input[type="submit"]')).click(function(e) {
 			e.preventDefault();
-			forms.ajax(variable);
+			if(hasFiles) {
+				forms.ajaxFiles(variable);
+			}
+			else {
+				forms.ajax(variable);
+			}
 		});
 	},
 	ajax: function(variable) {
@@ -65,6 +70,24 @@ var forms = {
 			},
 			'json'
 		);
+	},
+	ajaxFiles: function(variable) {
+		var formData = new FormData(variable.el.get(0));
+		$.ajax({
+			type: variable.el.attr('method'),
+			url: variable.el.attr('action'),
+			data: formData,
+			dataType: 'json',
+			processData: false,
+			contentType: false,
+			success: function(data) {
+				forms.reponseAjax(variable, data);
+			},
+			error: function(jqXHR, exception) {
+				var errorMsg = '<p>Une erreur est survenue lors de l\'appel AJAX.</p> <code>jqXHR.status: '+jqXHR.status+'<br> exception: '+exception+'</code>';
+				forms.errorAjax(variable, errorMsg);
+			},
+		});
 	},
 	reponseAjax: function(variable, data) {
 		this.cleanErrorAjax(variable);

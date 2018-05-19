@@ -1,4 +1,4 @@
-<form id="recipeAdd" action="partials/traitements/recipe-add.php" method="post">
+<form id="recipeAdd" action="partials/traitements/recipe-add.php" method="post" enctype="multipart/form-data">
 	<fieldset>
 		<label for="nom">
 			Nom de la recette
@@ -71,13 +71,11 @@
 		<label for="image">
 			Photo du plat
 		</label>
-		<?php
-			var_dump((int)$_SESSION['id']);
-			$truc = (int)$_SESSION['id'];
-			var_dump($truc);
-
-
-		?>
+		<input type="file" name="image" id="image">
+		<p>
+			Photographie en couleurs de 2&nbsp;Mo maximum.
+		</p>
+		<div class="preview"></div>
 	</fieldset>
 
 	<fieldset>
