@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 18 mai 2018 à 23:57
+-- Généré le :  Dim 20 mai 2018 à 22:56
 -- Version du serveur :  5.7.17
 -- Version de PHP :  7.1.3
 
@@ -61,7 +61,6 @@ CREATE TABLE `recettes` (
   `type` tinyint(3) UNSIGNED NOT NULL,
   `ajout` datetime NOT NULL,
   `auteur` tinyint(3) UNSIGNED NOT NULL,
-  `image` varchar(255) NOT NULL,
   `note` tinyint(3) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -98,9 +97,22 @@ CREATE TABLE `recettesustensiles` (
 CREATE TABLE `unites` (
   `id` tinyint(3) UNSIGNED NOT NULL,
   `nom` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `nomPlus` varchar(255) DEFAULT NULL,
+  `charniere` smallint(5) UNSIGNED DEFAULT NULL,
   `quantifiable` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `unites`
+--
+
+INSERT INTO `unites` (`id`, `nom`, `nomPlus`, `charniere`, `quantifiable`) VALUES
+(6, 'cl', 'l', 100, 1),
+(2, 'g', 'kg', 1000, 1),
+(3, 'c. à soupe', NULL, NULL, 1),
+(4, 'c. à café', NULL, NULL, 1),
+(5, 'Une pincée', NULL, NULL, 0),
+(1, 'unité', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -175,12 +187,12 @@ ALTER TABLE `ingredients`
 -- AUTO_INCREMENT pour la table `recettes`
 --
 ALTER TABLE `recettes`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `unites`
 --
 ALTER TABLE `unites`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
