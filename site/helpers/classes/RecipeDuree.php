@@ -33,7 +33,12 @@ class RecipeDuree {
 
 	public function format($hours, $minutes) {
 		if(isset($hours) && isset($minutes)) {
-			$this->val = $hours.':'.$minutes.':00';
+			if ($hours == '00' && $minutes == '00') {
+				$this->errors[] = 'La durée de la recette doit être au minimum de '.$this->minStep.' minutes.';
+			}
+			else {
+				$this->val = $hours.':'.$minutes.':00';
+			}
 		}
 	}
 
