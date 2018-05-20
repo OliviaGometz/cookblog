@@ -1,3 +1,11 @@
+<?php 
+	if (!isset($_SESSION['id'])) {
+		header('Location: index.php');
+		return;
+	}
+?>
+
+
 <form id="recipeAdd" action="partials/traitements/recipe-add.php" method="post" enctype="multipart/form-data">
 	<fieldset>
 		<label for="nom">
