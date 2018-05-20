@@ -73,7 +73,12 @@
 		</label>
 		<input type="file" name="image" id="image">
 		<p>
-			Photographie en couleurs de 2&nbsp;Mo maximum.
+			Photographie en couleurs respectant les spécifications suivantes&nbsp;:
+			<ul>
+				<li>2&nbsp;Mo maximum</li>
+				<li>1920px de large et 1080px de haut minimum</li>
+				<li>Format PNG, JPG ou JPEG</li>
+			</ul>
 		</p>
 		<div class="preview"></div>
 	</fieldset>

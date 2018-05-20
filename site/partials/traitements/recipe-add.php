@@ -10,6 +10,8 @@ $duree = new RecipeDuree;
 $difficulte = new Select;
 $prix = new Select;
 $type = new Select;
+$ajout = date('y-m-d H:i:s');
+$auteur = (int)$_SESSION['id'];
 $note = new Select;
 $image = new Image;
 
@@ -20,33 +22,43 @@ $difficulte->validate(filter_input(INPUT_POST, 'difficulte', FILTER_SANITIZE_STR
 $prix->validate(filter_input(INPUT_POST, 'prix', FILTER_SANITIZE_STRING), [1, 2, 3], 'une estimation du prix');
 $type->validate(filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING), [1, 2, 3, 4], 'un type de repas');
 $note->validate(filter_input(INPUT_POST, 'note', FILTER_SANITIZE_STRING), [1, 2, 3, 4], 'une appréciation');
-$image->validate($_FILES['image']);
+$image->validate($_FILES['image'], $ajout, $auteur);
 
-if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($note->val)) {
-	$req = $bdd->prepare('
-		INSERT INTO recettes (nom, description, duree, difficulte, prix, type, ajout, auteur, note)
-		VALUES (:nom, :description, :duree, :difficulte, :prix, :type, :ajout, :auteur, :note)
-	');
+if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($ajout) && isset($auteur) && isset($note->val) && isset($image->val)) {
 
-	$req->execute(
-		[
-			'nom' => $nom->val,
-			'description' => $desc->val,
-			'duree' => $duree->val,
-			'difficulte' => $difficulte->val,
-			'prix' => $prix->val,
-			'type' => $type->val,
-			'ajout' => date('y-m-d H:i:s'),
-			'auteur' => (int)$_SESSION['id'],
-			'note' => $note->val
-		]
-	);
+	$imgUpload = move_uploaded_file($_FILES['image']['tmp_name'], $image->val);
 
-	$req->closeCursor();
+	if (!$imgUpload) {
+		$reponse = [
+			'imgUpload' => 'Une erreur s\'est produite lors de l\'enregistrement de l\'image sur notre serveur. Veuillez contacter Olivia pour résoudre le problème.'
+		];
+	}
+	else {
+		$req = $bdd->prepare('
+			INSERT INTO recettes (nom, description, duree, difficulte, prix, type, ajout, auteur, note)
+			VALUES (:nom, :description, :duree, :difficulte, :prix, :type, :ajout, :auteur, :note)
+		');
 
-	$reponse = [
-		'ok' => 'tout est ok !'
-	];
+		$req->execute(
+			[
+				'nom' => $nom->val,
+				'description' => $desc->val,
+				'duree' => $duree->val,
+				'difficulte' => $difficulte->val,
+				'prix' => $prix->val,
+				'type' => $type->val,
+				'ajout' => $ajout,
+				'auteur' => $auteur,
+				'note' => $note->val
+			]
+		);
+
+		$req->closeCursor();
+
+		$reponse = [
+			'ok' => 'tout est ok !'
+		];
+	}
 }
 else {
 	$reponse = [
