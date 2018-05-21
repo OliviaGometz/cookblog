@@ -107,12 +107,12 @@ CREATE TABLE `unites` (
 --
 
 INSERT INTO `unites` (`id`, `nom`, `nomPlus`, `charniere`, `quantifiable`) VALUES
-(6, 'cl', 'l', 100, 1),
+(1, 'unité', NULL, NULL, 1),
 (2, 'g', 'kg', 1000, 1),
-(3, 'c. à soupe', NULL, NULL, 1),
-(4, 'c. à café', NULL, NULL, 1),
-(5, 'Une pincée', NULL, NULL, 0),
-(1, 'unité', NULL, NULL, 1);
+(3, 'cl', 'l', 100, 1),
+(4, 'c. à soupe', NULL, NULL, 1),
+(5, 'c. à café', NULL, NULL, 1),
+(6, 'Une pincée', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
