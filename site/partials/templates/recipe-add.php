@@ -13,7 +13,9 @@
 		<label for="description">
 			Description
 		</label>
-		<textarea name="description" id="description" placeholder="Petite description de la recette" minlength="20" maxlength="255" class="js-textarea"></textarea>
+		<div>
+			<textarea name="description" id="description" placeholder="Petite description de la recette" minlength="20" maxlength="255" class="js-textarea"></textarea>
+		</div>
 		<p>
 			Entre 20 et 255 caractères (espaces compris).
 		</p>
@@ -44,7 +46,10 @@
 		<div class="etapes">
 			<ol></ol>
 			<span class="btn">Ajouter une étape</span>
-		</div>		
+		</div>
+		<p>
+			Entre 20 et 800 caractères (espaces compris) par étape&nbsp; 1 étape minimum, 30 étapes maximum.
+		</p>
 	</fieldset>
 
 	<fieldset>
