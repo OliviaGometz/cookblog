@@ -1,11 +1,3 @@
-<?php 
-	if (!isset($_SESSION['id'])) {
-		header('Location: index.php');
-		return;
-	}
-?>
-
-
 <form id="recipeAdd" action="partials/traitements/recipe-add.php" method="post" enctype="multipart/form-data">
 	<fieldset>
 		<label for="nom">
@@ -25,6 +17,32 @@
 		<p>
 			Entre 20 et 255 caractères (espaces compris).
 		</p>
+	</fieldset>
+
+	<fieldset>
+		<label>
+			Ingrédients
+		</label>
+		<input type="text" name="ingredient" placeholder="Ingrédient 1">
+		
+	</fieldset>
+
+	<fieldset>
+		<label>
+			Ustensiles
+		</label>
+		<input type="text" name="ustensile" placeholder="Ustensile 1">
+		<p>
+			N'indiquez que les ustensiles qu'on ne trouve pas dans toutes les cuisines (mixeur, plancha...)&nbsp;: il est inutile de lister les ustensiles courants (cuillère à soupe, casserole, saladier...).
+		</p>
+	</fieldset>
+
+	<fieldset>
+		<label>
+			Étapes
+		</label>
+		<input type="text" name="etape" placeholder="">
+
 	</fieldset>
 
 	<fieldset>
