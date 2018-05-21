@@ -12,6 +12,9 @@
 
 <body>
 	<nav>
+		<a href="index.php">
+			Accueil
+		</a>
 		<div>
 			<button>
 				Bonhomme
