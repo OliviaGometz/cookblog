@@ -1,5 +1,12 @@
 <?php
 
+session_start();
+
+if (isset($_SESSION['id'])) {
+	header('Location: index.php');
+	return;
+}
+
 require_once('../../helpers/bdd-connexion.php');
 require_once('../../helpers/load-class.php');
 
