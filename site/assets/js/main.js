@@ -5,6 +5,7 @@ $(document).ready(function() {
 	logout.requete($('#logout'));
 	forms.requete(recipeAdd, true);
 	textarea.init();
+	etapes.init();
 });
 
 var popin = {
@@ -176,7 +177,7 @@ var recipeAdd = {
 };
 
 var textarea = {
-	el: $('.js-textarea').children('textarea'),
+	el: $('.js-textarea'),
 	mesureClassCorrect: 'mesureCorrect',
 	mesureClassError: 'mesureError',
 	init: function() {
@@ -197,3 +198,48 @@ var textarea = {
 		$(e).siblings('.count').text(e.value.length + '/' + $(e).attr('maxlength'));
 	},
 };
+
+var etapes = {
+	liste: $('.etapes').children('ol'),
+	btn: $('.etapes').children('.btn'),
+	li: '.etapes li',
+	el: '<li><textarea></textarea><div class="actions"><span class="up">up</span><span class="down">down</span><span class="close">x</span></div></li>',
+	elMin: 3,
+	elMax: 30,
+	init: function() {
+		this.start();
+		this.addEl();
+		this.removeEl();
+		this.upEl();
+		this.downEl();
+	},
+	start: function() {
+		while ($(this.li).length < this.elMin) {
+			this.liste.append(etapes.el);
+		}
+	},
+	addEl: function() {
+		this.btn.click(function() {
+			if ($(etapes.li).length < etapes.elMax) {
+				etapes.liste.append(etapes.el);
+			}
+		});
+	},
+	removeEl: function() {
+		this.liste.on('click', '.close', function() {
+			if ($(etapes.li).length > 1) {
+				$(this).parents('li').remove();
+			}
+		});
+	},
+	upEl: function() {
+		this.liste.on('click', '.up', function() {
+			$(this).parents('li').insertBefore($(this).parents('li').prev());
+		});
+	},
+	downEl: function() {
+		this.liste.on('click', '.down', function() {
+			$(this).parents('li').insertAfter($(this).parents('li').next());
+		});
+	},
+}

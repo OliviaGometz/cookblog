@@ -9,11 +9,11 @@
 		</p>
 	</fieldset>
 
-	<fieldset class="js-textarea">
+	<fieldset>
 		<label for="description">
 			Description
 		</label>
-		<textarea name="description" id="description" placeholder="Petite description de la recette" minlength="20" maxlength="255"></textarea>
+		<textarea name="description" id="description" placeholder="Petite description de la recette" minlength="20" maxlength="255" class="js-textarea"></textarea>
 		<p>
 			Entre 20 et 255 caractères (espaces compris).
 		</p>
@@ -41,8 +41,10 @@
 		<label>
 			Étapes
 		</label>
-		<input type="text" name="etape" placeholder="">
-
+		<div class="etapes">
+			<ol></ol>
+			<span class="btn">Ajouter une étape</span>
+		</div>		
 	</fieldset>
 
 	<fieldset>
@@ -52,7 +54,7 @@
 		<input type="number" name="dureeHour" id="duree" placeholder="0" min="0" max="24">h
 		<input type="number" name="dureeMin" placeholder="0" min="0" max="55" step="5">min
 		<p>
-			Total des temps de préparation et de cuisson. N'inclus pas le temps de pose que s'il ne te fait pas exéder 24h au total.
+			Total des temps de préparation et de cuisson (inutile d'inclure les éventuels temps de pose).
 		</p>
 	</fieldset>
 
