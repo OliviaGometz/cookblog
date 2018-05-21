@@ -215,13 +215,15 @@ var etapes = {
 	},
 	start: function() {
 		while ($(this.li).length < this.elMin) {
-			this.liste.append(etapes.el);
+			this.liste.append(this.el);
 		}
+		this.nameEl();
 	},
 	addEl: function() {
 		this.btn.click(function() {
 			if ($(etapes.li).length < etapes.elMax) {
 				etapes.liste.append(etapes.el);
+				etapes.nameEl();
 			}
 		});
 	},
@@ -229,17 +231,25 @@ var etapes = {
 		this.liste.on('click', '.close', function() {
 			if ($(etapes.li).length > 1) {
 				$(this).parents('li').remove();
+				etapes.nameEl();
 			}
 		});
 	},
 	upEl: function() {
 		this.liste.on('click', '.up', function() {
 			$(this).parents('li').insertBefore($(this).parents('li').prev());
+			etapes.nameEl();
 		});
 	},
 	downEl: function() {
 		this.liste.on('click', '.down', function() {
 			$(this).parents('li').insertAfter($(this).parents('li').next());
+			etapes.nameEl();
+		});
+	},
+	nameEl: function() {
+		$(this.li).each(function() {
+			$(this).children('textarea').attr('name', 'etape' + ($(this).index() + 1));
 		});
 	},
 }
