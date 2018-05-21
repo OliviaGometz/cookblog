@@ -1,13 +1,7 @@
 <?php
 	$title = 'Ajouter une recette';
 	require_once('partials/structure/head.php');
-?>
-
-<?php 
-	if (!isset($_SESSION['id'])) {
-		header('Location: index.php');
-		return;
-	}
+	require_once('helpers/is-not-logged.php');
 ?>
 
 <div id="ajout">
