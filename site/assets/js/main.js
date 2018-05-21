@@ -177,18 +177,18 @@ var recipeAdd = {
 };
 
 var textarea = {
-	el: $('.js-textarea'),
+	el: '.js-textarea',
 	mesureClassCorrect: 'mesureCorrect',
 	mesureClassError: 'mesureError',
 	init: function() {
-		this.start();
-		this.el.bind('input propertychange', function() {
-			textarea.changeMesure(this);
+		$(this.el).each(function() {
+			if ($(this).siblings('progress').length < 1) {
+				$(this).after('<progress></progress><span class="count"></span>');
+				textarea.changeMesure(this);
+			}
 		});
-	},
-	start: function() {
-		this.el.after('<progress></progress><span class="count"></span>');
-		this.el.each(function() {
+
+		$(this.el).bind('input propertychange', function() {
 			textarea.changeMesure(this);
 		});
 	},
@@ -203,7 +203,7 @@ var etapes = {
 	liste: $('.etapes').children('ol'),
 	btn: $('.etapes').children('.btn'),
 	li: '.etapes li',
-	el: '<li><textarea></textarea><div class="actions"><span class="up">up</span><span class="down">down</span><span class="close">x</span></div></li>',
+	el: '<li><textarea minlength="20" maxlength="800" class="js-textarea"></textarea><div class="actions"><span class="up">up</span><span class="down">down</span><span class="close">x</span></div></li>',
 	elMin: 3,
 	elMax: 30,
 	init: function() {
@@ -217,13 +217,13 @@ var etapes = {
 		while ($(this.li).length < this.elMin) {
 			this.liste.append(this.el);
 		}
-		this.nameEl();
+		this.progAndNameEl();
 	},
 	addEl: function() {
 		this.btn.click(function() {
 			if ($(etapes.li).length < etapes.elMax) {
 				etapes.liste.append(etapes.el);
-				etapes.nameEl();
+				etapes.progAndNameEl();
 			}
 		});
 	},
@@ -231,23 +231,24 @@ var etapes = {
 		this.liste.on('click', '.close', function() {
 			if ($(etapes.li).length > 1) {
 				$(this).parents('li').remove();
-				etapes.nameEl();
+				etapes.progAndNameEl();
 			}
 		});
 	},
 	upEl: function() {
 		this.liste.on('click', '.up', function() {
 			$(this).parents('li').insertBefore($(this).parents('li').prev());
-			etapes.nameEl();
+			etapes.progAndNameEl();
 		});
 	},
 	downEl: function() {
 		this.liste.on('click', '.down', function() {
 			$(this).parents('li').insertAfter($(this).parents('li').next());
-			etapes.nameEl();
+			etapes.progAndNameEl();
 		});
 	},
-	nameEl: function() {
+	progAndNameEl: function() {
+		textarea.init();
 		$(this.li).each(function() {
 			$(this).children('textarea').attr('name', 'etape' + ($(this).index() + 1));
 		});
