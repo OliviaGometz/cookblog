@@ -48,7 +48,7 @@
 			<span class="btn">Ajouter une étape</span>
 		</div>
 		<p>
-			Entre 20 et 800 caractères (espaces compris) par étape&nbsp; 1 étape minimum, 30 étapes maximum.
+			Entre 20 et 800 caractères (espaces compris) par étape&nbsp;: 1 étape minimum, 30 étapes maximum.
 		</p>
 	</fieldset>
 
