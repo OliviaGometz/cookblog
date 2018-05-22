@@ -34,7 +34,7 @@ class RecipeEtapes {
 		if (empty($this->errors)) {
 			foreach ($tab as $key => $value) {
 				if ($value === NULL) continue;
-				$this->val = $this->val . '(:recette, '.$key.', '.ucfirst($value).'),';
+				$this->val = $this->val . '(:recette, '.$key.', "'.ucfirst($value).'"),';
 			}
 			$this->val = rtrim($this->val, ",");
 		}
