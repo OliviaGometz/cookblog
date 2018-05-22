@@ -214,10 +214,10 @@ var etapes = {
 		this.downEl();
 	},
 	start: function() {
-		while ($(this.li).length < this.elMin) {
+		for (var i = 0; i < this.elMin; i++) {
 			this.liste.append(this.el);
+			this.progAndNameEl();
 		}
-		this.progAndNameEl();
 	},
 	addEl: function() {
 		this.btn.click(function() {
@@ -253,4 +253,4 @@ var etapes = {
 			$(this).children('textarea').attr('name', 'etape' + ($(this).index() + 1));
 		});
 	},
-}
+};
