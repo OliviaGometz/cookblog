@@ -22,12 +22,10 @@ class FormLogin {
 			global $bdd;
 
 			$req = $bdd->prepare(
-				'SELECT id, role, pseudo, password FROM users WHERE '.$this->type.' = :'.$this->type
+				'SELECT id, role, pseudo, password FROM users WHERE '.$this->type.' = "'.$login.'"'
 			);
 
-			$req->execute([
-				$this->type => $login
-			]);
+			$req->execute();
 
 			$this->user = $req->fetch(PDO::FETCH_OBJ);
 			$req->closeCursor();
