@@ -25,8 +25,10 @@
 		<label>
 			Ingrédients
 		</label>
-		<input type="text" name="ingredient" placeholder="Ingrédient 1">
-		
+		<div class="ingredients">
+			<ul></ul>
+			<span class="btn">Ajouter un ingrédient</span>
+		</div>		
 	</fieldset>
 
 	<fieldset>

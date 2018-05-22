@@ -6,6 +6,7 @@ $(document).ready(function() {
 	forms.requete(recipeAdd, true);
 	textarea.init();
 	etapes.init();
+	ingredients.init();
 });
 
 var popin = {
@@ -229,7 +230,7 @@ var etapes = {
 	},
 	removeEl: function() {
 		this.liste.on('click', '.close', function() {
-			if ($(etapes.li).length > 1) {
+			if ($(etapes.li).length > etapes.elMin) {
 				$(this).parents('li').remove();
 				etapes.progAndNameEl();
 			}
@@ -251,6 +252,44 @@ var etapes = {
 		textarea.init();
 		$(this.li).each(function() {
 			$(this).children('textarea').attr('name', 'etape' + ($(this).index() + 1));
+		});
+	},
+};
+
+var ingredients = {
+	liste: $('.ingredients').children('ul'),
+	btn: $('.ingredients').children('.btn'),
+	li: '.ingredients li',
+	el: '<li><input type="text"><div class="actions"><span class="close">x</span></div></li>',
+	elMin: 2,
+	elMax: 30,
+	init: function() {
+		for (var i = 0; i < this.elMin; i++) {
+			this.liste.append(this.el);
+			this.nameEl();
+		}
+		this.addEl();
+		this.removeEl();
+	},
+	addEl: function() {
+		this.btn.click(function() {
+			if ($(ingredients.li).length < ingredients.elMax) {
+				ingredients.liste.append(ingredients.el);
+				ingredients.nameEl();
+			}
+		});
+	},
+	removeEl: function() {
+		this.liste.on('click', '.close', function() {
+			if ($(ingredients.li).length > ingredients.elMin) {
+				$(this).parents('li').remove();
+				ingredients.nameEl();
+			}
+		});
+	},
+	nameEl: function() {
+		$(this.li).each(function() {
+			$(this).children('input').attr({name: 'ingredient' + ($(this).index() + 1), placeholder: 'Ingrédient ' + ($(this).index() + 1) });
 		});
 	},
 };
