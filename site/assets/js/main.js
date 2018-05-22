@@ -204,7 +204,7 @@ var etapes = {
 	liste: $('.etapes').children('ol'),
 	btn: $('.etapes').children('.btn'),
 	li: '.etapes li',
-	el: '<li><textarea minlength="20" maxlength="800" class="js-textarea"></textarea><div class="actions"><span class="up">up</span><span class="down">down</span><span class="close">x</span></div></li>',
+	el: $('.etapes').children('ol').html(),
 	elMin: 3,
 	elMax: 30,
 	init: function() {
@@ -215,6 +215,7 @@ var etapes = {
 		this.downEl();
 	},
 	start: function() {
+		this.liste.empty();
 		for (var i = 0; i < this.elMin; i++) {
 			this.liste.append(this.el);
 			this.progAndNameEl();
@@ -260,10 +261,11 @@ var ingredients = {
 	liste: $('.ingredients').children('ul'),
 	btn: $('.ingredients').children('.btn'),
 	li: '.ingredients li',
-	el: '<li><input type="text"><div class="actions"><span class="close">x</span></div></li>',
+	el: $('.ingredients').children('ul').html(),
 	elMin: 2,
 	elMax: 30,
 	init: function() {
+		this.liste.empty();
 		for (var i = 0; i < this.elMin; i++) {
 			this.liste.append(this.el);
 			this.nameEl();

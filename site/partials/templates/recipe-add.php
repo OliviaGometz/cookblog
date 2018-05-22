@@ -26,7 +26,14 @@
 			Ingrédients
 		</label>
 		<div class="ingredients">
-			<ul></ul>
+			<ul>
+				<li>
+					<input type="text">
+					<div class="actions">
+						<span class="close">x</span>
+					</div>
+				</li>
+			</ul>
 			<span class="btn">Ajouter un ingrédient</span>
 		</div>		
 	</fieldset>
@@ -46,7 +53,16 @@
 			Étapes
 		</label>
 		<div class="etapes">
-			<ol></ol>
+			<ol>
+				<li>
+					<textarea  class="js-textarea" minlength="20" maxlength="800"></textarea>
+					<div class="actions">
+						<span class="up">up</span>
+						<span class="down">down</span>
+						<span class="close">x</span>
+					</div>
+				</li>
+			</ol>
 			<span class="btn">Ajouter une étape</span>
 		</div>
 		<p>
