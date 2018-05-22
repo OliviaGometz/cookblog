@@ -14,6 +14,7 @@ $ajout = date('y-m-d H:i:s');
 $auteur = (int)$_SESSION['id'];
 $note = new Select;
 $image = new Image;
+$etapes = new RecipeEtapes;
 
 $nom->validate(filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING));
 $desc->validate(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
@@ -24,7 +25,13 @@ $type->validate(filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING), [1, 2,
 $note->validate(filter_input(INPUT_POST, 'note', FILTER_SANITIZE_STRING), [1, 2, 3, 4], 'une appréciation');
 $image->validate($_FILES['image'], $ajout, $auteur);
 
-if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($ajout) && isset($auteur) && isset($note->val) && isset($image->val)) {
+$steps = [];
+for ($i=1; $i<=30; $i++) {
+	$steps[$i] = filter_input(INPUT_POST, 'etape'.$i, FILTER_SANITIZE_STRING);
+}
+$etapes->validate($steps);
+
+if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($ajout) && isset($auteur) && isset($note->val) && isset($image->val) && isset($etapes->val)) {
 
 	$imgUpload = move_uploaded_file($_FILES['image']['tmp_name'], $image->val);
 
@@ -55,9 +62,41 @@ if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($diffic
 
 		$req->closeCursor();
 
-		$reponse = [
-			'ok' => 'tout est ok !'
-		];
+		$reqId = $bdd->prepare('
+			SELECT id FROM recettes WHERE ajout = :ajout AND auteur = :auteur
+		');
+
+		$reqId->execute([
+			'ajout' => $ajout,
+			'auteur' => $auteur
+		]);
+
+		$recipe = $reqId->fetch(PDO::FETCH_OBJ);
+		$reqId->closeCursor();
+
+		
+
+		if (!isset($recipe->id)) {
+			$reponse = [
+				'recipeUpload' => 'Une erreur s\'est produite lors de l\'enregistrement de la recette sur notre serveur. Veuillez contacter Olivia pour résoudre le problème.'
+			];
+		}
+		else {
+			$reqEtapes = $bdd->prepare('
+				INSERT INTO etapes (recette, numero, instruction)
+				VALUES '.$etapes->val
+			);
+
+			$reqEtapes->execute([
+				'recette' => $recipe->id
+			]);
+
+			$reqEtapes->closeCursor();
+
+			$reponse = [
+				'ok' => 'tout est ok !'
+			];
+		}
 	}
 }
 else {
