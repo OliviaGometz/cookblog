@@ -7,7 +7,7 @@ $(document).ready(function() {
 	textarea.init();
 	etapes.init();
 	ingredients.init();
-	unites.ajax();
+	unites.init();
 });
 
 var popin = {
@@ -293,13 +293,14 @@ var ingredients = {
 	nameEl: function() {
 		$(this.li).each(function() {
 			$(this).children('input').attr({name: 'ingredient' + ($(this).index() + 1), placeholder: 'Ingrédient ' + ($(this).index() + 1) });
+			$(this).children('select').attr({name: 'unite' + ($(this).index() + 1)});
 		});
 	},
 };
 
 var unites = {
-	selectOptions: '',
-	ajax: function() {
+	selectOptions: '<option value="" selected= "selected" disabled="disabled">Choisis une unité...</option>',
+	init: function() {
 		$.ajax({
 			type: 'post',
 			url: 'partials/traitements/recipe-ingredients.php',
@@ -308,9 +309,11 @@ var unites = {
 				for (var key in data) {
 					unites.selectOptions += '<option value="'+data[key]['id']+'" data-quantifiable="'+data[key]['quantifiable']+'">'+key+'</option>';
 				}
-				console.log(unites.selectOptions);
-				//rajouter nombre de personnes
+				unites.pushOptions();
 			},
 		});
-	}
-}
+	},
+	pushOptions: function() {
+		$(ingredients.li).children('select').html(this.selectOptions);
+	},
+};
