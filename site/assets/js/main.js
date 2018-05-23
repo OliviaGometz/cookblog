@@ -326,8 +326,7 @@ var unites = {
 		});
 	},
 	pushQuantite: function() {
-		$(ingredients.li).children('select').change(function() {
-			console.log($(this));
+		ingredients.liste.on('change', 'select', function() {
 			if ($(this).children('option:selected').data("quantifiable")) {
 				if (! $(this).siblings('input[type="number"]').length) {
 					$(this).after(unites.quantite);
