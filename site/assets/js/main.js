@@ -279,6 +279,7 @@ var ingredients = {
 			if ($(ingredients.li).length < ingredients.elMax) {
 				ingredients.liste.append(ingredients.el);
 				ingredients.nameEl();
+				unites.pushOptions();
 			}
 		});
 	},
@@ -292,15 +293,21 @@ var ingredients = {
 	},
 	nameEl: function() {
 		$(this.li).each(function() {
-			$(this).children('input').attr({name: 'ingredient' + ($(this).index() + 1), placeholder: 'Ingrédient ' + ($(this).index() + 1) });
+			$(this).children('input[type="text"]').attr({name: 'ingredient' + ($(this).index() + 1), placeholder: 'Ingrédient ' + ($(this).index() + 1)});
 			$(this).children('select').attr({name: 'unite' + ($(this).index() + 1)});
+			$(this).children('input[type="number"]').attr({name: 'quantite' + ($(this).index() + 1), placeholder: 'Quantité (ex: 1, 50...)'});
 		});
 	},
 };
 
 var unites = {
 	selectOptions: '<option value="" selected= "selected" disabled="disabled">Choisis une unité...</option>',
+	quantite: '<input type="number" min="1"></input>',
 	init: function() {
+		this.ajax();
+		this.pushQuantite();
+	},
+	ajax: function() {
 		$.ajax({
 			type: 'post',
 			url: 'partials/traitements/recipe-ingredients.php',
@@ -314,6 +321,22 @@ var unites = {
 		});
 	},
 	pushOptions: function() {
-		$(ingredients.li).children('select').html(this.selectOptions);
+		$(ingredients.li).children('select').each(function() {
+			if (! $(this).children('option').length) $(this).html(unites.selectOptions);
+		});
+	},
+	pushQuantite: function() {
+		$(ingredients.li).children('select').change(function() {
+			console.log($(this));
+			if ($(this).children('option:selected').data("quantifiable")) {
+				if (! $(this).siblings('input[type="number"]').length) {
+					$(this).after(unites.quantite);
+					ingredients.nameEl();
+				}
+			}
+			else {
+				$(this).siblings('input[type="number"]').remove();
+			}
+		});
 	},
 };
