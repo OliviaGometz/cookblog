@@ -29,6 +29,7 @@
 			<ul>
 				<li>
 					<input type="text">
+					
 					<div class="actions">
 						<span class="close">x</span>
 					</div>

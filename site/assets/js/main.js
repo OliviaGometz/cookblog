@@ -7,6 +7,7 @@ $(document).ready(function() {
 	textarea.init();
 	etapes.init();
 	ingredients.init();
+	unites.ajax();
 });
 
 var popin = {
@@ -295,3 +296,21 @@ var ingredients = {
 		});
 	},
 };
+
+var unites = {
+	selectOptions: '',
+	ajax: function() {
+		$.ajax({
+			type: 'post',
+			url: 'partials/traitements/recipe-ingredients.php',
+			dataType: 'json',
+			success: function(data) {
+				for (var key in data) {
+					unites.selectOptions += '<option value="'+data[key]['id']+'" data-quantifiable="'+data[key]['quantifiable']+'">'+key+'</option>';
+				}
+				console.log(unites.selectOptions);
+				//rajouter nombre de personnes
+			},
+		});
+	}
+}
