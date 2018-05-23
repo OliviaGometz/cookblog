@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 22 mai 2018 à 22:22
+-- Généré le :  mer. 23 mai 2018 à 16:14
 -- Version du serveur :  5.7.17
 -- Version de PHP :  7.1.3
 
@@ -107,13 +107,13 @@ CREATE TABLE `unites` (
 --
 
 INSERT INTO `unites` (`id`, `nom`, `nomPlus`, `charniere`, `quantifiable`) VALUES
-(1, 'Sans', NULL, NULL, 0),
-(2, 'Unité', NULL, NULL, 1),
-(3, 'g', 'kg', 1000, 1),
 (4, 'cl', 'l', 100, 1),
+(3, 'g', 'kg', 1000, 1),
 (5, 'c. à soupe', NULL, NULL, 1),
 (6, 'c. à café', NULL, NULL, 1),
-(7, 'Une pincée', NULL, NULL, 0);
+(7, 'Une pincée', NULL, NULL, 0),
+(2, 'Unité', NULL, NULL, 1),
+(1, 'Sans', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -129,6 +129,13 @@ CREATE TABLE `users` (
   `role` tinyint(3) UNSIGNED NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `pseudo`, `role`, `date`) VALUES
+(1, 'oliviagometz@gmail.com', '$2y$10$HYZ1nZCaUrzEYZ19Rv01DOmZDnXCTc9OJUBi2mjaL1BgrLAPqnd3G', 'Olivia', 2, '2018-05-15 16:49:49');
 
 -- --------------------------------------------------------
 
