@@ -6,13 +6,13 @@ require_once('../../helpers/load-class.php');
 $reponse = [];
 
 $req = $bdd->prepare('
-	SELECT id, nom, quantifiable FROM unites ORDER BY id ASC
+	SELECT id, nomBase, quantifiable FROM unites ORDER BY id ASC
 ');
 
 $req->execute();
 
 while ($unites = $req->fetch(PDO::FETCH_OBJ)) {
-	$reponse[$unites->nom] = [
+	$reponse[$unites->nomBase] = [
 		'id' => $unites->id,
 		'quantifiable' => $unites->quantifiable,
 	];

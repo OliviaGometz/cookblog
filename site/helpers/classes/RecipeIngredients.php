@@ -7,7 +7,7 @@ class RecipeIngredients {
 	private $max = 30;
 	private $ingId;
 	private $ingMin = 2;
-	private $ingMax = 20;
+	private $ingMax = 30;
 	private $unites = [];
 
 	public function __construct() {
