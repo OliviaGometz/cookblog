@@ -38,10 +38,10 @@
 			<span class="btn">Ajouter un ingrédient</span>
 		</div>
 		<p>
-			Ingrédients&nbsp;: entre 2 et 30 caractères, au pluriel, 2 ingrédients minimum, 30 ingrédients maximum.
+			Ingrédients&nbsp;: pour 1 personne, entre 2 et 30 caractères, au pluriel, 2 ingrédients minimum, 30 ingrédients maximum.
 		</p>
 	</fieldset>
-
+<!--
 	<fieldset>
 		<label>
 			Ustensiles
@@ -51,7 +51,7 @@
 			N'indiquez que les ustensiles qu'on ne trouve pas dans toutes les cuisines (mixeur, plancha...)&nbsp;: il est inutile de lister les ustensiles courants (cuillère à soupe, casserole, saladier...).
 		</p>
 	</fieldset>
-
+-->
 	<fieldset>
 		<label>
 			Étapes
