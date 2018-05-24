@@ -26,6 +26,7 @@ $type->validate(filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING), [1, 2,
 $note->validate(filter_input(INPUT_POST, 'note', FILTER_SANITIZE_STRING), [1, 2, 3, 4], 'une appréciation');
 $image->validate($_FILES['image'], $ajout, $auteur);
 
+$person = filter_input(INPUT_POST, 'person', FILTER_SANITIZE_STRING);
 $steps = [];
 for ($i=1; $i<=30; $i++) {
 	if (filter_input(INPUT_POST, 'etape'.$i, FILTER_SANITIZE_STRING) == NULL) continue;
@@ -38,7 +39,7 @@ for ($i=1; $i<=30; $i++) {
 	if (filter_input(INPUT_POST, 'ingredient'.$i, FILTER_SANITIZE_STRING) == NULL) continue;
 	$ing[filter_input(INPUT_POST, 'ingredient'.$i, FILTER_SANITIZE_STRING)] = ['unite' => filter_input(INPUT_POST, 'unite'.$i, FILTER_SANITIZE_STRING), 'quantite' => filter_input(INPUT_POST, 'quantite'.$i, FILTER_SANITIZE_STRING)];
 }
-$ingredients->validate($ing);
+$ingredients->validate($ing, $person, [1, 2, 4, 6]);
 
 if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($ajout) && isset($auteur) && isset($note->val) && isset($image->val) && isset($etapes->val) && isset($ingredients->val)) {
 

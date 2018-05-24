@@ -37,7 +37,7 @@ class RecipeIngredients {
 
 	public function checkUniteQuantite($uniteId, $quantite) {
 		if (!array_key_exists($uniteId, $this->unites)) {
-			$this->errors[] = 'C\'est pas bien de tripatouiller le code&nbsp;!';
+			$this->errors[] = 'C\'est pas bien de tripatouiller le code&nbsp;! Nous n\'avons par d\'autre unité pour le moment.';
 		}
 		elseif ($this->unites[$uniteId] == 1) {
 			if (!is_int($quantite)) {
@@ -46,6 +46,12 @@ class RecipeIngredients {
 		}
 		else {
 			$quantite = NULL;
+		}
+	}
+
+	public function checkPerson($person, $personArray) {
+		if (!in_array($person, $personArray)) {
+			$this->errors[] = 'C\'est pas bien de tripatouiller le code&nbsp;! Rentre un nombre de personnes valide.';
 		}
 	}
 
@@ -95,7 +101,7 @@ class RecipeIngredients {
 		$req2->closeCursor();
 	}
 
-	public function validate($tab) {
+	public function validate($tab, $person, $personArray) {
 		if (count($tab) < $this->min) {
 			$this->errors[] = 'Il doit y avoir au minimum '.$this->min.' ingrédients.';
 		}
@@ -103,6 +109,7 @@ class RecipeIngredients {
 			$this->errors[] = 'Il y a trop d\'ingrédients&nbsp; vous ne pouvez en ajouter que '.$this->max.' maximum.';
 		}
 		else {
+			$this->checkPerson($person, $personArray);
 			foreach ($tab as $key => $value) {
 				$this->sizeIng($key);
 				$this->checkUniteQuantite((int)$value['unite'], (int)$value['quantite']);
@@ -112,7 +119,8 @@ class RecipeIngredients {
 		if (empty($this->errors)) {
 			foreach ($tab as $key => $value) {
 				$this->ing(ucfirst($key));
-				$this->val = $this->val . '(:recette, '.$this->ingId.', '.(int)$value['unite'].', '.(int)$value['quantite'].'),';
+				$quantite = round((int)$value['quantite']/$person*100);
+				$this->val = $this->val . '(:recette, '.$this->ingId.', '.(int)$value['unite'].', '.$quantite.'),';
 			}
 			$this->val = rtrim($this->val, ",");
 		}

@@ -25,6 +25,12 @@
 		<label>
 			Ingrédients
 		</label>
+		<select name="person">
+			<option value="1">Pour 1 personne</option>
+			<option value="2">Pour 2 personnes</option>
+			<option value="4">Pour 4 personnes</option>
+			<option value="6">Pour 6 personnes</option>
+		</select>
 		<div class="ingredients">
 			<ul>
 				<li>
@@ -38,7 +44,7 @@
 			<span class="btn">Ajouter un ingrédient</span>
 		</div>
 		<p>
-			Ingrédients&nbsp;: pour 1 personne, entre 2 et 30 caractères, au pluriel, 2 ingrédients minimum, 30 ingrédients maximum.
+			Ingrédients&nbsp;: entre 2 et 30 caractères, au pluriel, 2 ingrédients minimum, 30 ingrédients maximum.
 		</p>
 	</fieldset>
 <!--
