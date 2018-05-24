@@ -77,3 +77,21 @@ foreach ($recipesId as $value) {
 
 	$reqIng->closeCursor();
 }
+
+$difficulte[1] = 'Facile';
+$difficulte[2] = 'Normale';
+$difficulte[3] = 'Complexe';
+
+$prix[1] = 'Bon marché';
+$prix[2] = 'Coût raisonnable';
+$prix[3] = 'Pour les grandes occasions';
+
+$type[1] = 'Petit-déjeuner';
+$type[2] = 'Encas sucré';
+$type[3] = 'Apéritif';
+$type[4] = 'Déjeuner ou dîner';
+
+$note[1] = 'Plutôt sympa';
+$note[2] = 'Bonne découverte';
+$note[3] = 'Excellent';
+$note[4] = 'Coup de coeur';
