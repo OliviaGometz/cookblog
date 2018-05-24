@@ -36,7 +36,10 @@
 				</li>
 			</ul>
 			<span class="btn">Ajouter un ingrédient</span>
-		</div>		
+		</div>
+		<p>
+			Ingrédients&nbsp;: entre 2 et 30 caractères, au pluriel, 2 ingrédients minimum, 30 ingrédients maximum.
+		</p>
 	</fieldset>
 
 	<fieldset>
@@ -67,7 +70,7 @@
 			<span class="btn">Ajouter une étape</span>
 		</div>
 		<p>
-			Entre 20 et 800 caractères (espaces compris) par étape&nbsp;: 1 étape minimum, 30 étapes maximum.
+			Entre 20 et 800 caractères (espaces compris) par étape&nbsp;: 3 étapes minimum, 30 étapes maximum.
 		</p>
 	</fieldset>
 
