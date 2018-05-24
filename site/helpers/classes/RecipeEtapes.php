@@ -3,7 +3,7 @@
 class RecipeEtapes {
 	public $val;
 	public $errors = [];
-	private $min = 1;
+	private $min = 3;
 	private $max = 30;
 	private $sizeMin = 20;
 	private $sizeMax = 800;
@@ -19,21 +19,19 @@ class RecipeEtapes {
 
 	public function validate($tab) {
 		if (count($tab) < $this->min) {
-			$this->errors[] = 'Il doit y avoir au minimum '.$this->min.' étape.';
+			$this->errors[] = 'Il doit y avoir au minimum '.$this->min.' étapes.';
 		}
 		elseif (count($tab) > $this->max) {
 			$this->errors[] = 'Il y a trop d\'étapes&nbsp; vous ne pouvez en ajouter que '.$this->max.' maximum.';
 		}
 		else {
 			foreach ($tab as $key => $value) {
-				if ($value === NULL) continue;
 				$this->checkSize($key, $value);
 			}
 		}
 
 		if (empty($this->errors)) {
 			foreach ($tab as $key => $value) {
-				if ($value === NULL) continue;
 				$this->val = $this->val . '(:recette, '.$key.', "'.ucfirst($value).'"),';
 			}
 			$this->val = rtrim($this->val, ",");
