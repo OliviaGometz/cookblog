@@ -9,7 +9,7 @@ $recipesId = [];
 //appel principal
 
 $req = $bdd->prepare('
-	SELECT * FROM recettes
+	SELECT recettes.*, users.pseudo FROM recettes INNER JOIN users ON recettes.auteur = users.id
 ');
 
 $req->execute();
@@ -23,7 +23,7 @@ while ($obj = $req->fetch(PDO::FETCH_OBJ)) {
 		'prix' => (int)$obj->prix,
 		'type' => (int)$obj->type,
 		'ajout' => $obj->ajout,
-		'auteur' => (int)$obj->auteur,
+		'auteur' => $obj->pseudo,
 		'note' => (int)$obj->note
 	];
 
