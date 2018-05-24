@@ -15,6 +15,7 @@ $auteur = (int)$_SESSION['id'];
 $note = new Select;
 $image = new Image;
 $etapes = new RecipeEtapes;
+$ingredients = new RecipeIngredients;
 
 $nom->validate(filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_STRING));
 $desc->validate(filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
@@ -27,11 +28,19 @@ $image->validate($_FILES['image'], $ajout, $auteur);
 
 $steps = [];
 for ($i=1; $i<=30; $i++) {
+	if (filter_input(INPUT_POST, 'etape'.$i, FILTER_SANITIZE_STRING) == NULL) continue;
 	$steps[$i] = filter_input(INPUT_POST, 'etape'.$i, FILTER_SANITIZE_STRING);
 }
 $etapes->validate($steps);
 
-if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($ajout) && isset($auteur) && isset($note->val) && isset($image->val) && isset($etapes->val)) {
+$ing = [];
+for ($i=1; $i<=30; $i++) {
+	if (filter_input(INPUT_POST, 'ingredient'.$i, FILTER_SANITIZE_STRING) == NULL) continue;
+	$ing[filter_input(INPUT_POST, 'ingredient'.$i, FILTER_SANITIZE_STRING)] = ['unite' => filter_input(INPUT_POST, 'unite'.$i, FILTER_SANITIZE_STRING), 'quantite' => filter_input(INPUT_POST, 'quantite'.$i, FILTER_SANITIZE_STRING)];
+}
+$ingredients->validate($ing);
+
+if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($difficulte->val) && isset($prix->val) && isset($type->val) && isset($ajout) && isset($auteur) && isset($note->val) && isset($image->val) && isset($etapes->val) && isset($ingredients->val)) {
 
 	$imgUpload = move_uploaded_file($_FILES['image']['tmp_name'], $image->val);
 
@@ -74,8 +83,6 @@ if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($diffic
 		$recipe = $reqId->fetch(PDO::FETCH_OBJ);
 		$reqId->closeCursor();
 
-		
-
 		if (!isset($recipe->id)) {
 			$reponse = [
 				'recipeUpload' => 'Une erreur s\'est produite lors de l\'enregistrement de la recette sur notre serveur. Veuillez contacter Olivia pour résoudre le problème.'
@@ -93,8 +100,19 @@ if (isset($nom->val) && isset($desc->val) && isset($duree->val) && isset($diffic
 
 			$reqEtapes->closeCursor();
 
+			$reqIng = $bdd->prepare('
+				INSERT INTO recettesingredients (recette, ingredient, unite, quantite)
+				VALUES '.$ingredients->val
+			);
+
+			$reqIng->execute([
+				'recette' => $recipe->id
+			]);
+
+			$reqIng->closeCursor();
+
 			$reponse = [
-				'ok' => 'tout est ok !'
+				'uploaded' => true
 			];
 		}
 	}
@@ -108,7 +126,9 @@ else {
 		'prix' => $prix->errors,
 		'type' => $type->errors,
 		'note' => $note->errors,
-		'image' => $image->errors
+		'image' => $image->errors,
+		'etape' => $etapes->errors,
+		'ingredients' => $ingredients->errors
 	];
 }
 
