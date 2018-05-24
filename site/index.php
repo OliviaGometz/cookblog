@@ -3,6 +3,6 @@
 	require_once('partials/structure/head.php');
 ?>
 
-Index
+<?php include_once('partials/templates/recipe-list.php'); ?>
 
 <?php require_once('partials/structure/end.php'); ?>
